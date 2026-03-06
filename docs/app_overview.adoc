@@ -13,10 +13,7 @@ Die App besteht aus mehreren fachlichen Modulen (Komponenten), die jeweils mit e
 Der Versicherte interagiert ausschließlich über die Smartphone App, die intern die Anfragen an die jeweiligen Backend-Dienste weiterleitet.
 
 .Architektur: Smartphone App mit Backend Services
-[plantuml, app_with_modules, svg]
-----
-include::../image_src/app_with_modules.puml[]
-----
+image::../images/app_with_modules.png[Architektur: Smartphone App mit Backend Services]
 
 == Registrierungsprozess
 
@@ -29,8 +26,5 @@ Der Prozess umfasst die Authentifizierung über den sektoralen Identity Provider
 . Nach Eingabe des One-Time-Passworts ist die Registrierung abgeschlossen.
 
 .Sequenzdiagramm: Registrierung eines Versicherten
-[plantuml, register, svg]
-----
-include::../image_src/register.puml[]
-----
+image::../images/register.png[Sequenzdiagramm: Registrierung eines Versicherten]
 
