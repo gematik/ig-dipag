@@ -1,0 +1,33 @@
+= AF_10160 - Manuelles Markieren von Rechnungen und Dokumenten
+
+[cols="h,1"]
+|===
+| ID | AF_10160
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Unabhängig +
+vom Status einer Digitale Patientenrechnung soll es dem Nutzer auch +
+ermöglicht werden, "Markierungen" an Digitale Patientenrechnungen +
+vorzunehmen, um bestimmte Bearbeitungsschritte zu vermerken +
+(siehe 4.5.2 Markierungen). Diese beziehen +
+sich - anders als die Workflow-Status - jeweils auf eine einzelne +
+Rechnung oder ein einzelnes ergänzendes Dokument.
+| Vorbedingung | * Der Rechnungsempfänger hat ein Nutzerkonto. +
+* Der Rechnungsempfänger ist autorisiert. +
+* Der Rechnungsempfänger hat Zugriff auf mindestens eine Rechnung mit ggf. ergänzenden Dokumenten (einen Rechnungs-Workflow).
+| Ablauf | * Der Rechnungsempfänger wählt im DiPag FdV wenigstens eine Rechnung oder ein ergänzendes Dokument aus. +
+* Der Rechnungsempfänger nutzt eine im DiPag FdV vorhandene +
+Funktionalität, die genutzt werden kann, um einen der folgenden +
+Bearbeitungsschritte  - jeweils mit Zeitpunkt - manuell zu +
+dokumentieren: +
+* Markieren (einer Rechnung) als "bezahlt" mit Zeitpunkt +
+* Markieren (einer Rechnung/eines Dokuments) als "gelesen" oder "ungelesen" +
+* Markieren (einer Rechnung/eines Dokuments) als "archiviert" +
+* Markieren (einer Rechnung/eines Dokuments) als "geteilt" +
+* Markieren (einer Rechnung/eines Dokuments) als "eingereicht per Post" +
+* Der Rechnungsempfänger gibt ggf. ergänzende Informationen zur Markierung ein.
+| Nachbedingung | * Im Fachdienst wurde die ausgewählte Rechnung/das ausgewählte Dokument mit der entsprechenden Markierung versehen. +
+* Die Markierung ist mit den entsprechenden Nutzern verknüpft. +
+* Ggf. wurden optionale ergänzende Informationen der Markierung hinzugefügt.
+| Alternativen | Der Anwendungsfall soll auch für die gleichzeitige Änderung mehrerer Rechnungen und Dokumente umgesetzt werden.
+|===

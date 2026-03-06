@@ -1,0 +1,20 @@
+= AF_10263 - Bearbeitung von Einstellungen des Nutzerkontos
+
+[cols="h,1"]
+|===
+| ID | AF_10263
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der Anwendungsfall beschreibt die Anpassung von Nutzer-Einstellungen im Nutzerkonto eines Versicherten.
+| Vorbedingung | * Der Nutzer (Versicherter) ist autorisiert. +
+* Der Nutzer hat ein Nutzerkonto.
+| Ablauf | * Der Nutzer ruft im DiPag FdV die Funktion zur Bearbeitung der Einstellungen zu seinem Nutzerkonto auf. +
+* Das DiPag  FdV ruft vom Fachdienst die aktuell hinterlegten Einstellungen ab und stellt diese dar. +
+* Der Nutzer passt diese ggf. nach seinen Bedürfnissen an: im +
+MVP können die Einstellungen zu Benachrichtigungen geändert werden, +
+d.h. welche Typen von Nachrichten an ihn gesendet werden. +
+* Das DiPag  FdV überträgt die Einstellungen an den Fachdienst. +
+* Der Fachdienst speichert die aktualisierten Einstellungen.
+| Nachbedingung | Die aktualisierten Einstellungen sind gespeichert im Fachdienst und ab sofort wirksam.
+| Alternativen | -
+|===

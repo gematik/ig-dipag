@@ -1,0 +1,29 @@
+= AF_10267 - Bearbeitung von Identitätsdaten des Nutzerkontos (Namensänderung)
+
+[cols="h,1"]
+|===
+| ID | AF_10267
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der Anwendungsfall beschreibt die Übernahme eines geänderten Namens in das Nutzerkonto eines Versicherten.
+| Vorbedingung | * Der Nutzer (Versicherter) ist autorisiert. +
+* Der Nutzer hat ein Nutzerkonto. +
+* Die Namensangaben gemäß GesundheitsID des Nutzers sind aus der aktuell gültigen Nutzeranmeldung entnehmbar. +
+Hinweis: +
+Die Namensangaben zum Nutzer können als +
+Claims aus dem ID-Token bezogen werden. Bei Bedarf muss der +
+Anwendungsdienst diese Claims anfordern.
+| Ablauf | * Der Nutzer ruft im DiPag FdV die Funktion zur Bearbeitung der Identitätsdaten zu seinem Nutzerkonto auf. +
+* Das DiPag FdV ruft vom Fachdienst die aktuell hinterlegten Einstellungen ab und stellt diese dar. +
+* Das DiPag FdV zeigt die aktuell gemäß GesundheitsID +
+gültigen Namensangaben und bietet dem Nutzer an, diese in sein +
+Nutzerkonto zu übernehmen. +
+* Der Nutzer bestätigt dies. +
+* Der Fachdienst speichert die aktualisierten Angaben.
+| Nachbedingung | Die aktualisierten Angaben sind gespeichert im Fachdienst und ab sofort wirksam.
+| Alternativen | Falls der Nutzer die Übernahme der Daten nicht bestätigt, bleiben die zuletzt gespeicherten Angaben gültig. +
+Hinweis: +
+Dies kann in der Folge dazu führen, dass Rechnungsersteller über +
+abweichende Namensangaben zu dem Versicherten verfügen. Der Nutzer +
+sollte darauf hingewiesen werden.
+|===

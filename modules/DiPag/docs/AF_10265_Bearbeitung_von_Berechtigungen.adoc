@@ -1,0 +1,24 @@
+= AF_10265 - Bearbeitung von Berechtigungen
+
+[cols="h,1"]
+|===
+| ID | AF_10265
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der Anwendungsfall beschreibt die Bearbeitung der Berechtigungen durch einen Rechnungsempfänger in seinem Nutzerkonto.
+| Vorbedingung | * Der Nutzer (Versicherter) ist autorisiert. +
+* Der Nutzer hat ein Nutzerkonto.
+| Ablauf | * Der Nutzer ruft im DiPag FdV die Funktion zur Bearbeitung der Berechtigungen zu seinem Nutzerkonto auf. +
+* Das DiPag FdV ruft vom Fachdienst die aktuell hinterlegten Berechtigungen ab und stellt diese dar. +
+* Der Nutzer passt diese ggf. nach seinen Bedürfnissen an, d.h. ggf. vorhandene Berechtigungen können +
+* widerrufen/wieder entzogen werden, +
+* (wieder) erteilt werden, +
+* gelöscht werden. +
+* Das DiPag FdV überträgt die Einstellungen an den Fachdienst. +
+* Der Fachdienst speichert die aktualisierten Einstellungen. +
+Hinweise: +
+* Im MVP ist dieser Anwendungsfall auf die Rechnungsversandberechtigungen beschränkt, d.h. der Nutzer ist Rechnungsempfänger. +
+* Näheres zu Berechtigungen siehe 4.7.3.2 Berechtigungsregeln im Digitale Patientenrechnung Fachdienst.
+| Nachbedingung | Die aktualisierten Berechtigungen sind gespeichert im Fachdienst und ab sofort wirksam.
+| Alternativen | -
+|===

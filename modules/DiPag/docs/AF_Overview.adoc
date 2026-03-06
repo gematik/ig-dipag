@@ -1,0 +1,140 @@
+= Übersicht der Anwendungsfälle (DiPag)
+
+Diese Übersicht listet alle Anwendungsfälle der Digitalen Patientenrechnung (DiPag) gemäß gemF_DiPag V1.1.1, Kapitel 6,
+die den Versicherten und sein FDV involvieren, auf. Sie ist in die folgenden Bereiche unterteilt:
+
+== Übermittlung von Rechnungen
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10138
+| link:AF_10138_Abruf_von_Rechnungen_Rechnungsempfänger.adoc[Abruf von Rechnungen (Rechnungsempfänger)]
+| Beschreibt den Abruf einer Liste von Rechnungen und zugehörigen Dokumenten durch den Rechnungsempfänger mittels Suchabfrage aus dem DiPag FdV.
+
+| AF_10271
+| link:AF_10271_Abfrage_von_angereicherten_PDF_per_Token_Rechnungsersteller.adoc[Abfrage von angereicherten PDF per Token (Rechnungsersteller)]
+| Beschreibt den Abruf eines angereicherten PDF aus dem Fachdienst seitens des Rechnungserstellers mittels eines Tokens.
+|===
+
+== Empfang von Rechnungen
+
+=== Abruf von Rechnungen und Dokumenten
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10180
+| link:AF_10180_Abfrage_von_Daten_zu_Rechnungen_und_Dokumenten_per_Token_Kostenträger.adoc[Abfrage von Daten zu Rechnungen und Dokumenten per Token (Kostenträger)]
+| Beschreibt den Abruf von Daten aus dem Fachdienst seitens des Kostenträgers mittels Token zu eingereichten Rechnungen und/oder Dokumenten.
+|===
+
+=== Berechtigung zum Rechnungsversand
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10140
+| link:AF_10140_Automatische_Anlage_der_individuellen_Berechtigung_zum_Rechnungsversand.adoc[Automatische Anlage der individuellen Berechtigung zum Rechnungsversand]
+| Beschreibt den Vorgang, ausgehend vom Versand von Rechnungen die individuelle Berechtigung zum Rechnungsversand für einzelne Rechnungsersteller sichtbar zu machen und deren Widerruf zu ermöglichen.
+
+| AF_10265
+| link:AF_10265_Bearbeitung_von_Berechtigungen.adoc[Bearbeitung von Berechtigungen]
+| Beschreibt die Bearbeitung der Berechtigungen durch einen Rechnungsempfänger in seinem Nutzerkonto.
+|===
+
+=== Benachrichtigung empfangen
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10186
+| link:AF_10186_Benachrichtigung_empfangen.adoc[Benachrichtigung empfangen]
+| Beschreibt den Empfang von Benachrichtigungen durch den Empfänger (Versicherter).
+|===
+
+== Verwaltung von empfangenen Rechnungen
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10245
+| link:AF_10245_Manuelles_Ändern_des_Bearbeitungsstatus_von_Rechnungen.adoc[Manuelles Ändern des Bearbeitungsstatus' von Rechnungen]
+| Beschreibt die manuelle Änderung des Workflow-Status einer Digitalen Patientenrechnung (OFFEN, ERLEDIGT, PAPIERKORB) durch den Rechnungsempfänger.
+
+| AF_10160
+| link:AF_10160_Manuelles_Markieren_von_Rechnungen_und_Dokumenten.adoc[Manuelles Markieren von Rechnungen und Dokumenten]
+| Beschreibt die Möglichkeit für den Nutzer, Markierungen an Digitalen Patientenrechnungen vorzunehmen, um bestimmte Bearbeitungsschritte zu vermerken.
+
+| AF_10261
+| link:AF_10261_Automatisches_Markieren_als_gelesen.adoc[Automatisches Markieren als "gelesen"]
+| Sobald ein Rechnungsempfänger sich eine zuvor ungelesene Rechnung oder ein zuvor ungelesenes Dokument ansieht, wird dieses automatisch als gelesen markiert.
+
+|===
+
+== Einreichung von Rechnungen
+
+=== Anwendungsfälle des Rechnungseinreichers
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10260
+| link:AF_10260_Einreichung_per_Frontend.adoc[Einreichung per Frontend]
+| Der Rechnungseinreicher reicht eine Rechnung über schon vorhandene digitale Einreichewege über die Service-App seines Kostenträgers ein.
+|===
+
+== Einrichtung und Verwaltung von Nutzerkonten
+
+=== Versicherte
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10187
+| link:AF_10187_Einrichten_eines_Kontos_für_Versicherte.adoc[Einrichten eines Kontos für Versicherte]
+| Beschreibt die Einrichtung eines Nutzerkontos für einen Versicherten durch den Versicherten selbst. Voraussetzung ist die Anmeldung mittels GesundheitsID.
+
+| AF_10263
+| link:AF_10263_Bearbeitung_von_Einstellungen_des_Nutzerkontos.adoc[Bearbeitung von Einstellungen des Nutzerkontos]
+| Beschreibt die Anpassung von Nutzer-Einstellungen im Nutzerkonto eines Versicherten.
+
+| AF_10267
+| link:AF_10267_Bearbeitung_von_Identitätsdaten_des_Nutzerkontos_Namensänderung.adoc[Bearbeitung von Identitätsdaten des Nutzerkontos (Namensänderung)]
+| Beschreibt die Übernahme eines geänderten Namens in das Nutzerkonto eines Versicherten.
+
+| AF_10191
+| link:AF_10191_Löschen_seines_Nutzerkontos_durch_den_Versicherten.adoc[Löschen seines Nutzerkontos durch den Versicherten]
+| Beschreibt die Löschung eines Nutzerkontos für einen Versicherten durch den Versicherten selbst.
+
+| AF_10270
+| link:AF_10270_Hinweis_auf_anstehende_Konto-Löschung_bei_Inaktivität.adoc[Hinweis auf anstehende Konto-Löschung bei Inaktivität]
+| Beschreibt, wie ein Versicherter auf die anstehende automatische Löschung seines Nutzerkontos bei Inaktivität hingewiesen wird.
+
+| AF_10269
+| link:AF_10269_Nutzerkonto_eines_Versicherten_löschen_bei_Inaktivität.adoc[Nutzerkonto eines Versicherten löschen bei Inaktivität]
+| Beschreibt die automatische Löschung eines Nutzerkontos für einen Versicherten im Falle von langer Inaktivität, nach vorherigem Hinweis.
+|===
+
+== Nutzerprotokolle
+
+[cols="1,3,3"]
+|===
+| ID | Anwendungsfall | Beschreibung
+
+| AF_10203
+| link:AF_10203_Nutzerprotokoll_einsehen.adoc[Nutzerprotokoll einsehen]
+| Beschreibt die Einsichtnahme eines Versicherten in sein Nutzerprotokoll.
+
+| AF_10194
+| link:AF_10194_Nutzerprotokoll_exportieren.adoc[Nutzerprotokoll exportieren]
+| Beschreibt, wie der Versicherte sein Nutzerprotokoll zwecks Aufbewahrung außerhalb des Fachdienstes exportieren kann.
+|===
+

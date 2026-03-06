@@ -1,0 +1,36 @@
+= Anwendungsübersicht DiPag
+
+== Architekturübersicht: Smartphone App mit Backend Services
+
+Die folgende Abbildung zeigt den Aufbau der Smartphone App und deren Anbindung an die zugehörigen Backend Services.
+Die App besteht aus mehreren fachlichen Modulen (Komponenten), die jeweils mit einem dedizierten Backend-Service kommunizieren:
+
+* **ZETA Client** – verantwortlich für die sichere Kommunikation mit der Telematikinfrastruktur über den ZETA-Dienst.
+* **Gesundheits-ID Authenticator** – realisiert die Authentifizierung des Versicherten mittels seiner GesundheitsID über den sektoralen Identity Provider.
+* **DiPag Client** – stellt die Funktionen der Digitalen Patientenrechnung bereit (Rechnungsempfang, -verwaltung, -einreichung).
+* **Fachmodul X Client** – Platzhalter für zukünftige fachliche Erweiterungen der App.
+
+Der Versicherte interagiert ausschließlich über die Smartphone App, die intern die Anfragen an die jeweiligen Backend-Dienste weiterleitet.
+
+.Architektur: Smartphone App mit Backend Services
+[plantuml, app_with_modules, svg]
+----
+include::../image_src/app_with_modules.puml[]
+----
+
+== Registrierungsprozess
+
+Die folgende Abbildung zeigt den Ablauf der Registrierung eines Versicherten in der Smartphone App.
+Der Prozess umfasst die Authentifizierung über den sektoralen Identity Provider (Sek-IDP) der Telematikinfrastruktur sowie die anschließende Verifizierung der E-Mail-Adresse mittels eines One-Time-Passworts:
+
+. Der Versicherte startet die App, die über den **ZETA Client** und den **Gesundheits-ID Authenticator** eine Authentifizierung am sektoralen IDP auslöst.
+. Nach erfolgreicher Authentifizierung wird der Versicherte aufgefordert, seine E-Mail-Adresse anzugeben.
+. Die Registrierung wird über den **ZETA Guard** der Telematikinfrastruktur durchgeführt, wobei ein One-Time-Passwort per E-Mail versendet wird.
+. Nach Eingabe des One-Time-Passworts ist die Registrierung abgeschlossen.
+
+.Sequenzdiagramm: Registrierung eines Versicherten
+[plantuml, register, svg]
+----
+include::../image_src/register.puml[]
+----
+

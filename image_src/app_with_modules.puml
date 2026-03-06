@@ -1,0 +1,44 @@
+@startuml
+' Einheitliche Größe für alle Komponenten
+' Hinweis: Je nach PlantUML-Renderer werden MinimumWidth/MinimumHeight bei component teils ignoriert.
+' Daher nutzen wir zusätzlich einen <style>-Block (wenn unterstützt) und als Fallback bewusst gleiche Zeilenlänge via \n.
+<style>
+component {
+  MinimumWidth 200
+  MinimumHeight 40
+  Padding 20
+}
+</style>
+
+actor Versicherter as v
+artifact "Smartphone App" as app {
+  component "ZETA Client" as zc
+  component "Gesundheits-ID Authenticator" as gia
+  component "DiPag Client" as dpc
+  component "Fachmodul X Client" as fxc
+
+  ' Layout: untereinander, ohne inhaltliche Abhängigkeiten darzustellen
+  zc -[hidden]down- gia
+  gia -[hidden]down- dpc
+  dpc -[hidden]down- fxc
+}
+ v -[hidden]down- zc
+' Backend Services (je Client-Komponente)
+Rectangle "Backend Services" as backend {
+component "ZETA Backend" as zeta_backend
+component "Gesundheits-ID Backend" as gid_backend
+component "DiPag Backend" as dipag_backend
+component "Fachmodul X Backend" as fx_backend
+}
+' Verbindungen: Komponente -> passender Backend-Service
+zc  -right(0- zeta_backend
+gia -right(0- gid_backend
+dpc -right(0- dipag_backend
+fxc -right(0- fx_backend
+
+' Layout-Hilfe: Services untereinander rechts ausrichten
+zeta_backend -[hidden]down- gid_backend
+gid_backend -[hidden]down- dipag_backend
+dipag_backend -[hidden]down- fx_backend
+
+@enduml

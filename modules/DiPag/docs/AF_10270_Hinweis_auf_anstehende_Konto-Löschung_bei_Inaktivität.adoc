@@ -1,0 +1,23 @@
+= AF_10270 - Hinweis auf anstehende Konto-Löschung bei Inaktivität
+
+[cols="h,1"]
+|===
+| ID | AF_10270
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt, wie ein Versicherter auf die anstehende +
+automatische Löschung seines Nutzerkontos bei Inaktivität hingewiesen +
+wird.
+| Vorbedingung | * Der Nutzer hat ein Nutzerkonto. +
+* Der Nutzer war längere Zeit inaktiv, sodass seit der +
+letzten Anmeldung die Frist bis zum Hinweis auf automatische Löschung +
+verstrichen ist (T_KONTO_HINWEIS, siehe 5.5.6.2 Löschfristen für Nutzerkonten). +
+* Es liegen keine Digitale Patientenrechnungen und Dokumente mehr für diesen Nutzer vor.
+| Ablauf | * Der Fachdienst stellt fest, dass seit der letzten Anmeldung +
+die Frist bis zum Hinweis auf automatische Löschung des Kontos +
+verstrichen ist und dort keine Digitale Patientenrechnungen und Dokumente mehr vorliegen. +
+* Der Fachdienst sendet eine Benachrichtigung an den Nutzer (Nachricht: KONTO_LÖSCHUNG).
+| Nachbedingung | * Die Benachrichtigung wurde verschickt.
+| Alternativen | -
+|===

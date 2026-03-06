@@ -1,0 +1,21 @@
+= AF_10261 - Automatisches Markieren als "gelesen"
+
+[cols="h,1"]
+|===
+| ID | AF_10261
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Sobald +
+ein Rechnungsempfänger sich eine zuvor ungelesene Rechnung oder ein +
+zuvor ungelesenes Dokument ansieht, soll diese oder dieses automatisch +
+als gelesen markiert werden.
+| Vorbedingung | * Der Rechnungsempfänger hat ein Nutzerkonto. +
+* Der Rechnungsempfänger ist autorisiert. +
+* Der Rechnungsempfänger hat Zugriff auf mindestens eine Rechnung mit ggf. ergänzenden Dokumenten (einen Rechnungs-Workflow). +
+* Die Rechnung ist als "ungelesen" markiert.
+| Ablauf | * Der Rechnungsempfänger nutzt eine Funktion im DiPag FdV, um +
+die Rechnung zu lesen (z.B. Öffnen der Detailansicht der strukturierten +
+Rechnungsdaten oder des PDF).
+| Nachbedingung | * Die Rechnung ist als "gelesen" markiert.
+| Alternativen | -
+|===

@@ -1,0 +1,37 @@
+= AF_10187 - Einrichten eines Kontos für Versicherte
+
+[cols="h,1"]
+|===
+| ID | AF_10187
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt die Einrichtung eines Nutzerkontos für einen +
+Versicherten durch den Versicherten selbst. Voraussetzung ist die +
+Anmeldung mittels GesundheitsID unter Verwendung des für den Nutzer +
+zuständigen IdP.
+| Vorbedingung | * Der Versicherte (Nutzer) hat die Installation des +
+Frontends des Versicherten (DiPag FdV) und die Einrichtung seines +
+Nutzerkontos begonnen. +
+* Der Nutzer ist autorisiert und verfügt noch nicht über ein Nutzerkonto im Anwendungsdienst.
+| Ablauf | Der Nutzer +
+* stimmt der Verwendung der benötigten und angefragten +
+Identitätsattribute durch die Anwendung Digitale Patientenrechnung +
+(KVNR, Namensangaben, Geburtsdatum) zu. +
+* stimmt den Nutzungsbedingungen des DiPag  FdV und des DiPag FD zu. +
+* stimmt der Übermittlung digitaler Rechnungen und ergänzender Dokumente über ihn betreffende medizinische Leistungen durch seine LE oder deren ADL mittels der Anwendung Digitale Patientenrechnung (DiPag) zu. +
+* stimmt zu, dass die Zuordnung digitaler Rechnungen in den +
+Eingang seines Nutzerkontos von ihm als verbindliche Zustellung +
+anerkannt wird. +
+* stimmt dem Empfang eingereichter digitaler Rechnungen und Dokumente durch seine KTR mittels der DiPag zu. +
+* nimmt die Einstellungen zu Benachrichtigungen vor, d.h. welche Typen von Nachrichten an ihn gesendet werden sollen. +
+Nach erfolgreichem Durchlaufen dieser Schritte legt der Fachdienst ein Nutzerkonto für den Nutzer an und speichert dort: +
+* Identitätsdaten (KVNR, Geburtsdatum, Namensangaben) +
+* Einwilligungen zu den oben aufgeführten Bedingungen +
+* Einstellungen zu Benachrichtigungen, siehe oben
+| Nachbedingung | Der Nutzer hat ein gültiges Nutzerkonto und kann nun alle für Versicherte verfügbaren Funktionen der Anwendung nutzen.
+| Alternativen | Ein Nutzerkonto kann nicht erfolgreich eingerichtet und aktiviert werden, wenn +
+* bereits ein Nutzerkonto für den Nutzer existiert oder +
+* der Nutzer der Verwendung der für die Anwendung erforderlichen Identitätsattribute widerspricht oder +
+* der Nutzer eine sonstige, aus technischen, rechtlichen oder sonstigen Gründen zwingend erforderliche Zustimmung verweigert.
+|===

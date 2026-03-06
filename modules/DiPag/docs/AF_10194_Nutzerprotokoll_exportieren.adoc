@@ -1,0 +1,21 @@
+= AF_10194 - Nutzerprotokoll exportieren
+
+[cols="h,1"]
+|===
+| ID | AF_10194
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt, wie der Versicherte sein Nutzerprotokoll +
+zwecks Aufbewahrung außerhalb des Fachdienstes aus dem Fachdienst +
+exportieren kann. Dies dient insbesondere dazu, das Nutzerprotokoll +
+bewahren zu können, bevor es im Rahmen einer Löschung des Nutzerkontos +
+ebenfalls gelöscht wird.
+| Vorbedingung | * Der Versicherte hat ein Nutzerkonto im Fachdienst. +
+* Der Versicherte ist autorisiert.
+| Ablauf | * Der Versicherte ruft die Funktion zum Exportieren (Download) des Nutzerprotokolls auf. +
+* Das DiPag FdV fragt beim Fachdienst das Nutzerprotokoll ab mit der KVNR des Versicherten. +
+* Der Fachdienst liefert das Protokoll an das DiPag FdV.
+| Nachbedingung | Der Versicherte kann das Protokoll mit seinem DiPag FdV exportieren ("Speichern als ..." o.ä.).
+| Alternativen | -
+|===

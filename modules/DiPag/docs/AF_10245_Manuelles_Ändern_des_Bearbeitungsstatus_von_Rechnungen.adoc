@@ -1,0 +1,39 @@
+= AF_10245 - Manuelles Ändern des Bearbeitungsstatus' von Rechnungen
+
+[cols="h,1"]
+|===
+| ID | AF_10245
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Eine +
+Digitale Patientenrechnung (inkl. der zugehörigen Dokumente) kann sich +
+im Workflow-Status "OFFEN", "ERLEDIGT" oder "PAPIERKORB" befinden. Da +
+Dokumente hier stets ergänzend zu einer Rechnung sind, bezieht sich der +
+Status einer Digitale Patientenrechnung stets auch auf die zugehörigen +
+Dokumente (siehe 4.5.1 Workflow einer Rechnung). +
+Eine Änderung soll manuell über das DiPag FdV ermöglicht werden, um +
+Rechnungen nach ihren Bearbeitungszuständen verwalten zu können.
+| Vorbedingung | * Der Rechnungsempfänger hat ein Nutzerkonto. +
+* Der Rechnungsempfänger ist autorisiert. +
+* Der +
+Rechnungsempfänger hat Zugriff auf mindestens eine Rechnung (einen +
+Rechnungs-Workflow inklusive referenzierter Rechnungen und Dokumente).
+| Ablauf | * Der Rechnungsempfänger wählt im DiPag FdV eine Rechnung (einen Rechnungs-Workflow) aus. +
+* Der Rechnungsempfänger ändert über das DiPag FdV den Status der ausgewählten Rechnung +
+* von "OFFEN" auf "ERLEDIGT" oder "PAPIERKORB", +
+* von "ERLEDIGT" auf "OFFEN" oder "PAPIERKORB", +
+* von "PAPIERKORB" auf "OFFEN".
+| Nachbedingung | * Der zugehörige Rechnungs-Workflow befindet sich in dem vom Rechnungsempfänger gewählten Status. +
+* Bei einem Übergang von "PAPIERKORB" oder "ERLEDIGT" +
+auf "OFFEN" wurde die Frist T_OFFEN_BIS für das Löschdatum neu gesetzt +
+(siehe 5.5.6.3 Fristen für die Löschung und Aufbewahrung von Rechnungen und Dokumenten). +
+* Bei einem Übergang von "OFFEN" auf "ERLEDIGT" wurde die Frist T_ERLEDIGT_BIS für das Löschdatum neu gesetzt (siehe 5.5.6.3 Fristen für die Löschung und Aufbewahrung von Rechnungen und Dokumenten).
+| Alternative | Der +
+Anwendungsfall soll auch für die gleichzeitige Änderung mehrerer +
+Rechnungs-Workflows umgesetzt werden, wobei hier Unterschiede bei den +
+erlaubten Statusübergängen je nach Ausgangsstatus der Rechnungen +
+beachtet werden müssen. +
+Neben einer Statusänderung soll der +
+Nutzer alternativ die Möglichkeit erhalten, eine Rechnung aus dem Status +
+PAPIERKORB manuell endgültig aus dem Fachdienst zu löschen.
+|===

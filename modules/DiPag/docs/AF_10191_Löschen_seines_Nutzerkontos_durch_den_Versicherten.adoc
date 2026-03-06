@@ -1,0 +1,22 @@
+= AF_10191 - Löschen seines Nutzerkontos durch den Versicherten
+
+[cols="h,1"]
+|===
+| ID | AF_10191
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt die Löschung eines Nutzerkontos für einen +
+Versicherten durch den Versicherten selbst. Voraussetzung ist die +
+Anmeldung mittels GesundheitsID unter Verwendung des für den Nutzer +
+zuständigen Identity Providers.
+| Vorbedingung | * Der Nutzer (Versicherter) ist autorisiert. +
+* Der Nutzer hat ein Nutzerkonto.
+| Ablauf | * Der Nutzer wählt die Funktion zum Löschen des Nutzerkontos im DiPag FdV aus. +
+* Der Nutzer wird auf die Unumkehrbarkeit der Löschung hingewiesen und muss die Löschung explizit bestätigen. +
+* Das Nutzerkonto mit allen damit verknüpften Daten wird gelöscht. +
+* Die Nutzer-Sitzung am Fachdienst wird beendet.
+| Nachbedingung | * Das Nutzerkonto ist gelöscht. +
+* Die Nutzer-Sitzung ist beendet.
+| Alternativen | -
+|===

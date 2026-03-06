@@ -1,0 +1,65 @@
+= AF_10138 - Abruf von Rechnungen (Rechnungsempfänger)
+
+[cols="h,1"]
+|===
+| ID | AF_10138
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt den Abruf einer Liste von Rechnungen und +
+zugehörigen Dokumenten durch den Rechnungsempfänger mittels Suchabfrage +
+aus dem DiPag FdV.
+| Vorbedingungen | * Der Rechnungsempfänger (Nutzer) ist autorisiert und hat ein Nutzerkonto. +
+* Im Fachdienst sind Rechnungs-Workflows vorhanden, die ihm als Empfänger zugeordnet sind.
+| Ablauf | Der Rechnungsempfänger ruft mittels DiPag FdV im Fachdienst Rechnungen ab und übergibt dazu: +
+* Suchparameter (Filter): +
+* Status (einer oder mehrere) des Rechnungs-Workflows +
+* Behandelte Person (in den Rechnungen genannte behandelte Person nach Vorname, Name) +
+* Behandelnder Leistungserbringer +
+* optional: +
+* Verwendungszweck +
+* Freitext +
+* Markierung(en) +
+* Sortierkriterium - genau eines der folgenden: +
+* Rechnungsdatum (ist Default, wenn kein anderes ausgewählt) +
+* Zahlungszieldatum (optional) +
+* Gesamtbetrag +
+* Im DiPag FdV gewählte/definierte Parameter für das Paging1: +
+* Paging Size (Maximalanzahl der zurückzugebenden Rechnungs-Workflows) +
+* Auswahl der ersten/nächsten/vorherigen anzuzeigenden Treffermenge (Page) zur Suche, entsprechend Sortierkriterium +
+* Der Fachdienst liefert die Treffermenge zurück.
+| Nachbedingungen | Das DiPag FdV hat eine Liste der Rechnungs-Workflows erhalten: +
+* gefiltert entsprechend Suchparameter +
+* sortiert gemäß Sortierkriterium +
+* Ausschnitt der Treffermenge gemäß Paging Parametern +
+Zu jedem Rechnungs-Workflow gibt es: +
+* eine Zusammenfassung zwecks Anzeige in einer Übersicht mit den wichtigsten Daten: +
+* Status des Workflows +
+* Markierung(en) +
+* Name des behandelnden Leistungserbringers (LE) +
+* Datum der Rechnung +
+* Information, ob Korrekturrechnung +
+* Gesamtbetrag +
+* Anzahl der ergänzenden Dokumente (falls vorhanden) +
+* Referenz (Rechnungs-Token) auf das angereicherte PDF +
+* Detailinformationen zwecks Anzeige in einer Detailansicht: +
+* Name des behandelnden LE +
+* Datum der Rechnung +
+* Information, ob Korrekturrechnung +
+* Diagnose(n) +
+* Liste der Rechnungspositionen (alle Informationen, siehe 4.9.1.1 Rechnung) +
+* Gesamtbetrag +
+* Informationen zur Zahlung der Rechnung: +
+* Zahlungszieldatum +
+* Bankverbindung +
+* Referenz (Rechnungs-Token) auf das angereicherte PDF +
+* Liste der ergänzenden Dokumente (falls vorhanden), jeweils mit: +
+* grundlegende Angaben wie Titel und Typ des Dokuments (wenn vorhanden) +
+* Markierung(en) +
+* Referenz (Dokument-Token) auf das angereicherte PDF +
+Der Rechnungsempfänger kann +
+* die Liste der Rechnungen in einer Übersicht im DiPag FdV ansehen, +
+* einzelne Einträge in der Detailansicht öffnen und +
+* zu den Rechnungen und Dokumenten das angereicherte PDF abrufen
+| Alternativen | -
+|===

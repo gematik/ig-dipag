@@ -1,0 +1,24 @@
+= AF_10269 - Nutzerkonto eines Versicherten löschen bei Inaktivität
+
+[cols="h,1"]
+|===
+| ID | AF_10269
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Anwendungsfall beschreibt die automatische Löschung eines Nutzerkontos +
+für einen Versicherten im Falle von langer Inaktivität, nach vorherigem +
+Hinweis.
+| Vorbedingung | * Der Nutzer hat ein Nutzerkonto. +
+* Der Nutzer war längere Zeit inaktiv, sodass sodass seit der +
+letzten Anmeldung die Frist bis zur automatischen Löschung verstrichen +
+ist (T_KONTO_LÖSCHEN, siehe 5.5.6.2 Löschfristen für Nutzerkonten). +
+* Es liegen keine Digitale Patientenrechnungen und Dokumente mehr für diesen Nutzer vor.
+| Ablauf | * Der Fachdienst stellt fest, dass seit der letzten Anmeldung +
+die Frist bis zur automatischen Löschung des Kontos verstrichen +
+ist und dort keine Digitale Patientenrechnungen und Dokumente mehr +
+vorliegen. +
+* Der Fachdienst löscht das Nutzerkonto und alle damit verknüpften Daten.
+| Nachbedingung | * Das Nutzerkonto ist gelöscht.
+| Alternativen | -
+|===

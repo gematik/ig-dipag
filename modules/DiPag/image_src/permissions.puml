@@ -1,0 +1,32 @@
+
+@startuml
+|Versicherter|
+start
+:Registerung des Accounts;
+:Zustimmung für den
+ Rechnungsemfang erteilen;
+
+|Rechnungsersteller|
+:Rechnung erstellen;
+:1. Rechnung an DiPagFachdienst übermitteln;
+
+|DiPagFachdienst|
+:Berechtigung für den Rechnungsersteller anlegen;
+
+stop
+
+|Versicherter|
+start
+:Berechtigungen vom Fachdienst abrufen;
+if (Berechtigungsstatus ermitteln) is (Status = Berechtigung erteilt) then
+  :Berechtigung widerrufen;
+
+else (Status = Berechtigung widerrufen)
+  :Berechtigung erteilen;
+endif
+
+|DiPagFachdienst|
+:Neue Berechtigungskonfiguration speichern;
+stop
+@enduml
+

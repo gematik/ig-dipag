@@ -1,0 +1,39 @@
+@startuml
+title Registrierung
+
+actor "Versicherte Person" as Person
+box "Smartphone App"
+participant "Smartphone App" as App
+participant "ZETA Client" as ZETA
+participant "Gesundheits-ID Authenticator" as Authenticator
+end box
+participant "Email-Account" as Email
+
+box "Telematik-Infrastruktur"
+participant "Sektoraler IDP" as IDP
+participant "ZETA Guard" as Guard
+end box
+
+Person -> App: start app
+App -> ZETA: authenticate
+ZETA -> Authenticator: authenticate
+Authenticator -> IDP: authorize call am Sek-IDP
+IDP --> Authenticator: credentials abfragen
+Authenticator --> Person: credentials abfragen
+Person -> Authenticator: credentials eingeben 
+Authenticator -> IDP: credentials
+IDP --> Authenticator: id_token ausstellen
+Authenticator --> ZETA: id_token ausstellen
+
+App -> Person: E-Mail abfragen
+Person -> App: E-Mail eingaben
+App -> ZETA: register
+ZETA -> Guard: register
+Guard -> Email: One Time Passwort versenden
+Person -> Email: E-Mail mit One Time Passwort abrufen
+Email --> Person: Email mit One Time Passwort
+Person -> App: One Time Passwort eingeben
+App -> ZETA: One Time Passwort
+ZETA -> Guard:  One Time Passwort
+
+@enduml

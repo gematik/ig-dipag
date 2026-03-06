@@ -1,0 +1,32 @@
+= AF_10260 - Einreichung per Frontend
+
+[cols="h,1"]
+|===
+| ID | AF_10260
+| Verbindlichkeit | MUSS
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der +
+Rechnungseinreicher reicht eine Rechnung über schon vorhandene digitale +
+Einreichewege über die Service-App seines Kostenträgers ein.
+| Vorbedingung | * Der Rechnungseinreicher hat ein Nutzerkonto. +
+* Der Rechnungseinreicher ist autorisiert. +
+* Der Rechnungseinreicher hat Zugriff auf mindestens eine +
+Rechnung mit ggf. ergänzenden Dokumenten - das heißt, er ist auch +
+Rechnungsempfänger.
+| Ablauf | * Der Rechnungseinreicher wählt im DiPag FdV eine Rechnung +
+oder ein Dokument aus, welches er bei seinem KTR (Herausgeber des DiPag +
+FdV) einreichen möchte. +
+* Der Rechnungseinreicher nutzt im DiPag FdV eine (außerhalb +
+der FD DiPag FD) existierende Funktionalität für die Einreichung von +
+Dokumenten: +
+* per Weitergabe eines PDF mit strukturierten Daten +
+oder +
+* per Weitergabe eines Token
+| Nachbedingung | * Die vom Rechnungseinreicher gewählte Rechnung oder das gewählte Dokument wurde +
+* als angereichertes PDF (siehe AF_10262 - Abfrage von Daten zu Rechnungen und Dokumenten per Token (Rechnungsempfänger)) +
+oder +
+* als Rechnungs-/Dokument-Token +
+aus dem Fachdienst geladen und an das Backend des KTR weitergegeben. +
+* Die Rechnung/das Dokument wurde als "eingereicht (per Frontend)" markiert, mit dem Datum versehen und mit dem KTR verknüpft.
+| Alternativen | Der Anwendungsfall soll auch für die gleichzeitige Weitergabe mehrerer Rechnungen und Dokumente umgesetzt werden.
+|===

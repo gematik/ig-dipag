@@ -1,0 +1,22 @@
+= AF_10186 - Benachrichtigung empfangen
+
+[cols="h,1"]
+|===
+| ID | AF_10186
+| Verbindlichkeit | nicht definiert
+| Letzte Aktualisierung | 2025-05-23
+| Beschreibung | Der Anwendungsfall beschreibt den Empfang von Benachrichtigungen durch den Empfänger (Versicherter).
+| Vorbedingung | * Der Fachdienst hat eine Benachrichtigung mit einem angegebenem Typ (siehe 4.5.3 Aktive Benachrichtigungen) an den Empfänger (Versicherter) geschickt. +
+* Der Empfänger hat den Empfang von Benachrichtigungen dieses Typs nicht blockiert. +
+* Der Empfänger hat ein Nutzerkonto und hat Zugriff auf sein registriertes Endgerät mit DiPag FdV.
+| Ablauf | * Die Benachrichtigung wird vom Fachdienst auf das Endgerät des Empfängers weitergeleitet. +
+* Der Empfänger nimmt die Benachrichtigung zur Kenntnis +
+und öffnet das DiPag FdV, wo er erforderlichenfalls zunächst seine +
+Identität authentifizieren lassen muss. +
+* Der Versicherte sieht nach erfolgter Autorisierung im +
+DiPag FdV im entsprechenden Bereich der Nutzeroberfläche eine für ihn +
+verständliche Anzeige, welcher Typ von Benachrichtigung eingetroffen +
+ist.
+| Nachbedingung | * Die Benachrichtigung ist im DiPag FdV im entsprechenden Bereich der Nutzeroberfläche für den Empfänger sichtbar.
+| Alternativen | -
+|===
