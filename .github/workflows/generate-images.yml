@@ -34,10 +34,10 @@ jobs:
           # --- Determine which image_src directories are affected ---
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Manual trigger: find ALL image_src dirs that contain .puml / .drawio files
-            puml_dirs=$(find . -type d -name "image_src" -exec sh -c 'ls "$1"/*.puml 2>/dev/null && echo "$1"' _ {} \; \
-              | grep 'image_src' | sed 's|^\./||' | sort -u)
-            drawio_dirs=$(find . -type d -name "image_src" -exec sh -c 'ls "$1"/*.drawio 2>/dev/null && echo "$1"' _ {} \; \
-              | grep 'image_src' | sed 's|^\./||' | sort -u)
+            puml_dirs=$(find . -name "*.puml" -path "*/image_src/*" \
+              | xargs -I{} dirname {} | sed 's|^\./||' | sort -u)
+            drawio_dirs=$(find . -name "*.drawio" -path "*/image_src/*" \
+              | xargs -I{} dirname {} | sed 's|^\./||' | sort -u)
           else
             # Push trigger: only pick image_src dirs where files actually changed
             puml_dirs=$(git diff --name-only HEAD~1 HEAD -- '*.puml' \
@@ -85,11 +85,14 @@ jobs:
         run: mkdir -p ${{ matrix.outdir }}
 
       # Run PlantUML via Docker to render all .puml files to PNG
-      # -o sets the absolute output path to the sibling images/ folder
+      # -o ../images sets the output path relative to each source file,
+      # so image_src/*.puml outputs to the sibling images/ folder.
+      # (A relative path is required because the Docker container mounts
+      #  the workspace at a different path than ${{ github.workspace }}.)
       - name: Generate PlantUML diagrams
         uses: holowinski/plantuml-github-action@1.2025.4
         with:
-          args: -v -tpng -o ${{ github.workspace }}/${{ matrix.outdir }} ${{ matrix.srcdir }}/*.puml
+          args: -v -tpng -o ../images ${{ matrix.srcdir }}/*.puml
 
       # Commit and push the newly generated images back to the branch
       - name: Commit generated images
