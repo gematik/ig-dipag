@@ -10,28 +10,31 @@ on:
       - '**.puml'
   workflow_dispatch:
 
+# Prevent concurrent runs on the same branch to avoid commit conflicts
+concurrency:
+  group: generate-images-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # ---------------------------------------------------------------
-  # Step 1: Discover which image_src directories contain changed
-  #         .puml or .drawio files and build separate matrices for
-  #         the PlantUML and Draw.io export jobs.
+  # Single job that discovers changed directories and generates
+  # all images sequentially, then commits everything in one go.
+  # This avoids commit conflicts that arise when parallel matrix
+  # jobs each try to push to the same branch.
   # ---------------------------------------------------------------
-  discover:
+  generate:
     runs-on: ubuntu-latest
-    outputs:
-      has_puml: ${{ steps.find.outputs.has_puml }}
-      has_drawio: ${{ steps.find.outputs.has_drawio }}
-      puml_dirs: ${{ steps.find.outputs.puml_dirs }}
-      drawio_dirs: ${{ steps.find.outputs.drawio_dirs }}
     steps:
-      # Fetch the repo with enough history to diff against the previous commit
+      # Fetch the repo with full history (needed for drawio-export-action
+      # change detection and for diffing against the previous commit)
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - id: find
+      # --- Discover which image_src directories are affected ---
+      - name: Discover changed image_src directories
+        id: discover
         run: |
-          # --- Determine which image_src directories are affected ---
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Manual trigger: find ALL image_src dirs that contain .puml / .drawio files
             puml_dirs=$(find . -name "*.puml" -path "*/image_src/*" \
@@ -46,94 +49,66 @@ jobs:
               | xargs -I{} dirname {} | sort -u | grep 'image_src' || true)
           fi
 
-          # --- Build a JSON matrix for the PlantUML job ---
-          # Each entry maps srcdir (source) to outdir (sibling images/ folder)
-          puml_matrix=$(echo "$puml_dirs" | while read dir; do
-            [ -z "$dir" ] && continue
-            outdir=$(echo "$dir" | sed 's|image_src$|images|')
-            echo "{\"srcdir\":\"$dir\",\"outdir\":\"$outdir\"}"
-          done | jq -s -c '.')
+          # Store results as multi-line outputs
+          {
+            echo "puml_dirs<<EOF"
+            echo "$puml_dirs"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo "drawio_dirs<<EOF"
+            echo "$drawio_dirs"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
-          # --- Build a JSON matrix for the Draw.io job ---
-          drawio_matrix=$(echo "$drawio_dirs" | while read dir; do
-            [ -z "$dir" ] && continue
-            echo "{\"srcdir\":\"$dir\"}"
-          done | jq -s -c '.')
+      # --- Generate PlantUML images for each affected directory ---
+      - name: Generate PlantUML diagrams
+        if: steps.discover.outputs.puml_dirs != ''
+        run: |
+          echo "${{ steps.discover.outputs.puml_dirs }}" | while read srcdir; do
+            [ -z "$srcdir" ] && continue
 
-          # --- Publish outputs for downstream jobs ---
-          echo "puml_dirs={\"include\":$puml_matrix}" >> "$GITHUB_OUTPUT"
-          echo "drawio_dirs={\"include\":$drawio_matrix}" >> "$GITHUB_OUTPUT"
-          # Boolean flags so that jobs can be skipped when there is nothing to do
-          echo "has_puml=$( [ "$puml_matrix" != '[]' ] && echo true || echo false )" >> "$GITHUB_OUTPUT"
-          echo "has_drawio=$( [ "$drawio_matrix" != '[]' ] && echo true || echo false )" >> "$GITHUB_OUTPUT"
+            # Derive the sibling images/ folder from the image_src/ folder
+            outdir=$(echo "$srcdir" | sed 's|image_src$|images|')
 
-  # ---------------------------------------------------------------
-  # Step 2: Generate PNG images from PlantUML (.puml) source files.
-  #         Runs once per affected image_src directory.
-  # ---------------------------------------------------------------
-  plantuml:
-    needs: discover
-    if: needs.discover.outputs.has_puml == 'true'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{ fromJson(needs.discover.outputs.puml_dirs) }}
-    steps:
-      - uses: actions/checkout@v4
+            echo "::group::Processing PlantUML in $srcdir -> $outdir"
 
-      # Ensure the target images/ directory exists before generating files
-      - name: Create output directory
-        run: mkdir -p ${{ matrix.outdir }}
+            # Ensure the target images/ directory exists
+            mkdir -p "$outdir"
 
-      # Run PlantUML via Docker to render all .puml files to PNG
+            echo "Source files:"
+            ls -la "$srcdir"/*.puml
+
+            echo "::endgroup::"
+          done
+
+      # Run PlantUML via Docker to render all discovered .puml files to PNG.
       # -o ../images sets the output path relative to each source file,
       # so image_src/*.puml outputs to the sibling images/ folder.
       # (A relative path is required because the Docker container mounts
       #  the workspace at a different path than ${{ github.workspace }}.)
-      - name: Generate PlantUML diagrams
+      # We process all .puml files across all image_src directories in one call.
+      - name: Run PlantUML
+        if: steps.discover.outputs.puml_dirs != ''
         uses: holowinski/plantuml-github-action@1.2025.4
         with:
-          args: -v -tpng -o ../images ${{ matrix.srcdir }}/*.puml
+          args: -v -tpng -o ../images **/image_src/*.puml
 
-      # Commit and push the newly generated images back to the branch
-      - name: Commit generated images
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs: generate PlantUML images for ${{ matrix.srcdir }}"
-
-  # ---------------------------------------------------------------
-  # Step 3: Export PNG images from Draw.io (.drawio) source files.
-  #         Runs once per affected image_src directory.
-  # ---------------------------------------------------------------
-  drawio:
-    needs: discover
-    if: needs.discover.outputs.has_drawio == 'true'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{ fromJson(needs.discover.outputs.drawio_dirs) }}
-    steps:
-      # Full history is needed for the drawio-export-action's change detection
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      # Ensure the target images/ directory exists before exporting files
-      - name: Create output directory
-        run: mkdir -p $(echo "${{ matrix.srcdir }}" | sed 's|image_src$|images|')
-
-      # Export all .drawio files in the directory to PNG
-      # output: ../images places the result in the sibling images/ folder
+      # --- Export Draw.io images for each affected directory ---
+      # The drawio-export-action must be called per directory since
+      # it accepts a single path input.
       - name: Export drawio files to PNG
+        if: steps.discover.outputs.drawio_dirs != ''
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: ${{ matrix.srcdir }}
           format: png
           output: ../images
           remove-page-suffix: true
           transparent: true
           action-mode: all
 
-      # Commit and push the newly generated images back to the branch
+      # --- Commit all generated images in a single commit ---
       - name: Commit generated images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: generate Draw.io images for ${{ matrix.srcdir }}"
+          commit_message: "docs: generate diagram images"
