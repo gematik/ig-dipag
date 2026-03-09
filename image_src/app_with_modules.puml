@@ -1,7 +1,45 @@
 @startuml
+' --- Mermaid-ähnlicher Style ---
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Segoe UI, Trebuchet MS, sans-serif"
+skinparam defaultFontSize 13
+
+skinparam component {
+  BorderColor #AAAAAA
+  BackgroundColor #ECECFF
+  FontColor #333333
+  BorderThickness 1.5
+}
+
+skinparam artifact {
+  BorderColor #BBBBBB
+  BackgroundColor #F9F9FF
+  FontColor #666666
+  BorderThickness 1.5
+}
+
+skinparam rectangle {
+  BorderColor #BBBBBB
+  BackgroundColor #F9F9FF
+  FontColor #666666
+  BorderThickness 1.5
+}
+
+skinparam actor {
+  BorderColor #AAAAAA
+  BackgroundColor #ECECFF
+  FontColor #333333
+}
+
+skinparam interface {
+  BorderColor #AAAAAA
+  BackgroundColor #ECECFF
+}
+' --- Ende Style ---
+
 ' Einheitliche Größe für alle Komponenten
-' Hinweis: Je nach PlantUML-Renderer werden MinimumWidth/MinimumHeight bei component teils ignoriert.
-' Daher nutzen wir zusätzlich einen <style>-Block (wenn unterstützt) und als Fallback bewusst gleiche Zeilenlänge via \n.
 <style>
 component {
   MinimumWidth 200

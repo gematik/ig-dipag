@@ -1,5 +1,39 @@
 
 @startuml
+' --- Mermaid-ähnlicher Style ---
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Segoe UI, Trebuchet MS, sans-serif"
+skinparam defaultFontSize 13
+
+skinparam activity {
+  BorderColor #AAAAAA
+  BackgroundColor #ECECFF
+  FontColor #333333
+  BorderThickness 1.5
+  DiamondBorderColor #AAAAAA
+  DiamondBackgroundColor #ECECFF
+  DiamondFontColor #333333
+}
+
+skinparam swimlane {
+  BorderColor #BBBBBB
+  TitleFontColor #666666
+  TitleFontSize 14
+}
+
+skinparam partition {
+  BorderColor #BBBBBB
+  BackgroundColor #F9F9FF
+}
+
+skinparam arrow {
+  Color #333333
+  Thickness 1.5
+}
+' --- Ende Style ---
+
 |Versicherter|
 start
 :Registerung des Accounts;

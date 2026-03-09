@@ -1,6 +1,50 @@
 @startuml
 title Registrierung
 
+' --- Mermaid-ähnlicher Style ---
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Segoe UI, Trebuchet MS, sans-serif"
+skinparam defaultFontSize 13
+
+skinparam sequence {
+  ArrowColor #333333
+  ArrowThickness 1.5
+  LifeLineBorderColor #AAAAAA
+  LifeLineBorderThickness 1.5
+  LifeLineBackgroundColor #FFFFFF
+
+  ParticipantBorderColor #AAAAAA
+  ParticipantBackgroundColor #ECECFF
+  ParticipantFontColor #333333
+  ParticipantBorderThickness 1.5
+  ParticipantPadding 12
+
+  ActorBorderColor #AAAAAA
+  ActorBackgroundColor #ECECFF
+  ActorFontColor #333333
+
+  BoxBorderColor #BBBBBB
+  BoxBackgroundColor #F9F9FF
+  BoxFontColor #666666
+  BoxFontSize 12
+
+  DividerBorderColor #CCCCCC
+  DividerBackgroundColor #F0F0F0
+
+  MessageAlign center
+}
+
+skinparam title {
+  FontSize 16
+  FontColor #333333
+  BorderRoundCorner 10
+  BorderColor #CCCCCC
+  BackgroundColor #ECECFF
+}
+' --- Ende Style ---
+
 actor "Versicherte Person" as Person
 box "Smartphone App"
 participant "Smartphone App" as App

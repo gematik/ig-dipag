@@ -13,32 +13,7 @@ Die App besteht aus mehreren fachlichen Modulen (Komponenten), die jeweils mit e
 Der Versicherte interagiert ausschließlich über die Smartphone App, die intern die Anfragen an die jeweiligen Backend-Dienste weiterleitet.
 
 .Architektur: Smartphone App mit Backend Services
-[mermaid]
-----
-graph LR
-    v[🧑 Versicherter] --- app
-
-    subgraph app["Smartphone App"]
-        direction TB
-        zc["ZETA Client"]
-        gia["Gesundheits-ID Authenticator"]
-        dpc["DiPag Client"]
-        fxc["Fachmodul X Client"]
-    end
-
-    subgraph backend["Backend Services"]
-        direction TB
-        zeta_backend["ZETA Backend"]
-        gid_backend["Gesundheits-ID Backend"]
-        dipag_backend["DiPag Backend"]
-        fx_backend["Fachmodul X Backend"]
-    end
-
-    zc --- zeta_backend
-    gia --- gid_backend
-    dpc --- dipag_backend
-    fxc --- fx_backend
-----
+image::../images/app_with_modules.png[Architektur: Smartphone App mit Backend Services]
 
 
 
@@ -53,46 +28,5 @@ Der Prozess umfasst die Authentifizierung über den sektoralen Identity Provider
 . Nach Eingabe des One-Time-Passworts ist die Registrierung abgeschlossen.
 
 .Sequenzdiagramm: Registrierung eines Versicherten
-[mermaid]
-----
-sequenceDiagram
-    title Registrierung
-
-    actor Person as Versicherte Person
-
-    box Smartphone App
-        participant App as Smartphone App
-        participant ZETA as ZETA Client
-        participant Authenticator as Gesundheits-ID Authenticator
-    end
-
-    participant Email as Email-Account
-
-    box Telematik-Infrastruktur
-        participant IDP as Sektoraler IDP
-        participant Guard as ZETA Guard
-    end
-
-    Person->>App: start app
-    App->>ZETA: authenticate
-    ZETA->>Authenticator: authenticate
-    Authenticator->>IDP: authorize call am Sek-IDP
-    IDP-->>Authenticator: credentials abfragen
-    Authenticator-->>Person: credentials abfragen
-    Person->>Authenticator: credentials eingeben
-    Authenticator->>IDP: credentials
-    IDP-->>Authenticator: id_token ausstellen
-    Authenticator-->>ZETA: id_token ausstellen
-
-    App->>Person: E-Mail abfragen
-    Person->>App: E-Mail eingeben
-    App->>ZETA: register
-    ZETA->>Guard: register
-    Guard->>Email: One Time Passwort versenden
-    Person->>Email: E-Mail mit One Time Passwort abrufen
-    Email-->>Person: Email mit One Time Passwort
-    Person->>App: One Time Passwort eingeben
-    App->>ZETA: One Time Passwort
-    ZETA->>Guard: One Time Passwort
-----
+image::../images/register.png[Sequenzdiagramm: Registrierung eines Versicherten]
 
